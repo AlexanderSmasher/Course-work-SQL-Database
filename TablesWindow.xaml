@@ -1,0 +1,34 @@
+﻿<Window x:Class="DBRealEstateAgency.TablesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DBRealEstateAgency"
+        mc:Ignorable="d"
+        Title="Real Estate Agency" Height="600" Width="800" ResizeMode="CanMinimize" Background="#AEEBFF" Icon="icon.ico">
+    <Grid>
+        <Menu VerticalAlignment="Top">
+            <MenuItem Header="File">
+                <MenuItem Name="SaveChanges" Header="Save" Click="SaveChanges_Click"></MenuItem>
+                <Separator Name ="AdminSeparator"/>
+                <MenuItem Name="ChangeUser" Header="Change user" Click="ChangeUser_Click"></MenuItem>
+                <MenuItem Name="NewUser" Header="New user" Click="NewUser_Click"></MenuItem>
+                <Separator />
+                <MenuItem Name="Exit" Header="Exit" Click="Exit_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Name="Sellers" Header="Sellers" Click="Sellers_Click"></MenuItem>
+                <MenuItem Name="Buyers" Header="Buyers" Click="Buyers_Click" ></MenuItem>
+                <MenuItem Name="Premises" Header="Premises" Click="Premises_Click" ></MenuItem>
+                <MenuItem Name="TransLogs" Header="Transaction logs" Click="TransLogs_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Requests">
+                <MenuItem Name="FirstR" Header="List of sold and leased premises on a certain date" Click="FirstR_Click"></MenuItem>
+                <MenuItem Name="SecondR" Header="Availability of different types of premises" Click="SecondR_Click"></MenuItem>
+                <MenuItem Name="ThirdR"  Header="Terms of the contract on clients" Click="ThirdR_Click"></MenuItem>
+                <MenuItem Name="FourthR" Header="Terms of the contract on the premises" Click="FourthR_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <DataGrid x:Name="InfoGrid" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="524" Margin="5,32,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="True" Background="#EEFFFF"/>
+    </Grid>
+</Window>
