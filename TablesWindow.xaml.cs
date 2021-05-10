@@ -63,6 +63,8 @@ namespace DBRealEstateAgency
 
         private void Sellers_Click(object sender, RoutedEventArgs e)
         {
+            loadDataButton.Visibility = Visibility.Hidden;
+            loadDataField.Visibility = Visibility.Hidden;
             SelectData("SELECT * FROM sellers;");
             InfoGrid.Columns[0].Header = "Sellers №";
             InfoGrid.Columns[1].Header = "Name";
@@ -74,6 +76,8 @@ namespace DBRealEstateAgency
 
         private void Buyers_Click(object sender, RoutedEventArgs e)
         {
+            loadDataButton.Visibility = Visibility.Hidden;
+            loadDataField.Visibility = Visibility.Hidden;
             SelectData("SELECT * FROM buyers;");
             InfoGrid.Columns[0].Header = "Buyers №";
             InfoGrid.Columns[1].Header = "Name";
@@ -85,6 +89,8 @@ namespace DBRealEstateAgency
 
         private void Premises_Click(object sender, RoutedEventArgs e)
         {
+            loadDataButton.Visibility = Visibility.Hidden;
+            loadDataField.Visibility = Visibility.Hidden;
             SelectData("SELECT * FROM premises;");
             InfoGrid.Columns[0].Header = "Premises №";
             InfoGrid.Columns[1].Header = "Sellers №";
@@ -95,6 +101,8 @@ namespace DBRealEstateAgency
 
         private void TransLogs_Click(object sender, RoutedEventArgs e)
         {
+            loadDataButton.Visibility = Visibility.Hidden;
+            loadDataField.Visibility = Visibility.Hidden;
             SelectData("SELECT * FROM transaction_log;");
             InfoGrid.Columns[0].Header = "Transactions №";
             InfoGrid.Columns[1].Header = "Sellers №";
@@ -109,17 +117,14 @@ namespace DBRealEstateAgency
 
         private void FirstR_Click(object sender, RoutedEventArgs e)
         {
-            SelectData("SELECT premises.premises_ID, premises.sellers_ID, premises.code, premises.type, premises.destination " +
-                "FROM premises, transaction_log WHERE transaction_log.premises_ID = premises.premises_ID AND rental_period = '2007-04-21/2011-07-21';");
-            InfoGrid.Columns[0].Header = "Premises №";
-            InfoGrid.Columns[1].Header = "Sellers №";
-            InfoGrid.Columns[2].Header = "Premises code";
-            InfoGrid.Columns[3].Header = "Type";
-            InfoGrid.Columns[4].Header = "Destination";
+            loadDataButton.Visibility = Visibility.Visible;
+            loadDataField.Visibility = Visibility.Visible;
         }
 
         private void SecondR_Click(object sender, RoutedEventArgs e)
         {
+            loadDataButton.Visibility = Visibility.Hidden;
+            loadDataField.Visibility = Visibility.Hidden;
             SelectData("SELECT premises.premises_ID, premises.sellers_ID, premises.code, premises.type, premises.destination " +
                 "FROM premises WHERE premises.premises_ID NOT IN (SELECT transaction_log.premises_ID FROM transaction_log " +
                 "WHERE transaction_log.premises_ID = premises.premises_ID) OR premises.premises_ID IN (SELECT transaction_log.premises_ID " +
@@ -134,6 +139,8 @@ namespace DBRealEstateAgency
 
         private void ThirdR_Click(object sender, RoutedEventArgs e)
         {
+            loadDataButton.Visibility = Visibility.Hidden;
+            loadDataField.Visibility = Visibility.Hidden;
             SelectData("SELECT sellers.full_name, transaction_log.rental_terms, transaction_log.rental_period " +
                 "FROM transaction_log, sellers WHERE sellers.sellers_ID = transaction_log.sellers_ID ORDER BY sellers.full_name ASC;");
             InfoGrid.Columns[0].Header = "Name";
@@ -143,6 +150,8 @@ namespace DBRealEstateAgency
 
         private void FourthR_Click(object sender, RoutedEventArgs e)
         {
+            loadDataButton.Visibility = Visibility.Hidden;
+            loadDataField.Visibility = Visibility.Hidden;
             SelectData("SELECT premises.premises_ID, transaction_log.rental_terms, transaction_log.rental_period " +
                 "FROM transaction_log, premises WHERE premises.premises_ID = transaction_log.premises_ID ORDER BY premises.premises_ID ASC;");
             InfoGrid.Columns[0].Header = "Premises №";
@@ -154,6 +163,18 @@ namespace DBRealEstateAgency
         {
             Data.UpdateCommand = ComBuild.GetUpdateCommand();
             Data.Update(Table);
+        }
+
+        private void loadDataButton_Click(object sender, RoutedEventArgs e)
+        {
+            string field = loadDataField.Text;
+            SelectData("SELECT premises.premises_ID, premises.sellers_ID, premises.code, premises.type, premises.destination " +
+                "FROM premises, transaction_log WHERE transaction_log.premises_ID = premises.premises_ID AND rental_period = '" + field + "';");
+            InfoGrid.Columns[0].Header = "Premises №";
+            InfoGrid.Columns[1].Header = "Sellers №";
+            InfoGrid.Columns[2].Header = "Premises code";
+            InfoGrid.Columns[3].Header = "Type";
+            InfoGrid.Columns[4].Header = "Destination";
         }
     }
 }

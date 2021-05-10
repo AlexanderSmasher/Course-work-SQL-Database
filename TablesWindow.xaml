@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DBRealEstateAgency"
         mc:Ignorable="d"
-        Title="Real Estate Agency" Height="600" Width="800" ResizeMode="CanMinimize" Background="#AEEBFF" Icon="icon.ico">
+        Title="Real Estate Agency" Height="700" Width="800" ResizeMode="CanMinimize" Background="#AEEBFF" Icon="Resources/icon.ico">
     <Grid>
         <Menu VerticalAlignment="Top">
             <MenuItem Header="File">
@@ -30,5 +30,8 @@
             </MenuItem>
         </Menu>
         <DataGrid x:Name="InfoGrid" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="524" Margin="5,32,0,0" VerticalAlignment="Top" Width="772" AutoGenerateColumns="True" Background="#EEFFFF"/>
+        <Button x:Name="loadDataButton" Content="Load" HorizontalAlignment="Left" Margin="5,624,0,0" VerticalAlignment="Top" Width="128" Height="32" Visibility="Hidden" Click="loadDataButton_Click"/>
+        <TextBox x:Name="loadDataField" HorizontalAlignment="Left" Height="23" Margin="5,583,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" Visibility="Hidden"/>
+
     </Grid>
 </Window>
